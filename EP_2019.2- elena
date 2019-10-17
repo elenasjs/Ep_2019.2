@@ -1,0 +1,145 @@
+import random
+aposta = int(input('Faça sua aposta: '))
+cartas =['A',2,3,4,5,6,7,8,9,10,'J','Q','K']
+i = random.randint(0,12)
+j = random.randint(0,12)
+carta_escolhida_1 = cartas[i]
+carta_escolhida_2 = cartas[j]
+print('Suas cartas são {0} e {1}'.format(carta_escolhida_1,carta_escolhida_2))
+contador = 0
+contador_cpu = 0
+
+if carta_escolhida_1 == 'J' or  carta_escolhida_1=='K' or carta_escolhida_1=='Q':
+    carta_escolhida_1 = 10
+if carta_escolhida_2 == 'J' or  carta_escolhida_2=='K' or carta_escolhida_2=='Q':
+    carta_escolhida_2 = 10
+    
+if carta_escolhida_1 == 'A':
+    escolha = int(input('você recebeu A! Qual valor vc quer? 1 ou 11?'))
+    carta_escolhida_1 = escolha
+
+if carta_escolhida_2 == 'A':
+    escolha = int(input('você recebeu A! Qual valor vc quer? 1 ou 11?'))
+    carta_escolhida_2 = escolha
+
+contador = carta_escolhida_1+carta_escolhida_2
+print(contador)
+if contador == 21:
+    vitoria = 'blackjack'
+    print('Blackjack! Você venceu.')
+    aposta = aposta + 1.5*aposta
+    print('Seu premio foi de {0}'.format(aposta))
+    
+
+    
+    
+
+continuar = input('voce quer mais cartas?')
+if continuar == 'sim':
+    z = random.randint(0,12)
+    carta_escolhida_3 = cartas[z]
+    print('Sua carta é {0}'.format(carta_escolhida_3))
+    if carta_escolhida_3 == 'J' or  carta_escolhida_3=='K' or carta_escolhida_3=='Q':
+        carta_escolhida_3 = 10
+    if carta_escolhida_3 == 'A':
+        escolha = int(input('você recebeu A! Qual valor vc quer? 1 ou 11?'))
+        carta_escolhida_3 = escolha
+        
+    contador += carta_escolhida_3
+    if contador > 21:
+        print(contador)
+        print('você perdeu!')
+    else:
+        print(contador)
+        continuar = input('Você quer mais cartas?')
+        while continuar == 'sim':
+            z = random.randint(0,12)
+            carta_escolhida_3 = cartas[z]
+            print('Sua carta é {0}'.format(carta_escolhida_3))
+            if carta_escolhida_3 == 'J' or  carta_escolhida_3=='K' or carta_escolhida_3=='Q':
+                carta_escolhida_3 = 10
+            if carta_escolhida_3 == 'A':
+                escolha = int(input('você recebeu A! Qual valor vc quer? 1 ou 11?'))
+                carta_escolhida_3 = escolha
+        
+            contador += carta_escolhida_3
+            if contador > 21:
+                print(contador)
+                print('você perdeu!')
+            else:
+                print(contador)
+                continuar = input('Você quer mais cartas?')
+            
+if continuar == 'nao':
+    print(contador)
+    cpu1 = random.randint(0,12)
+    cpu2 = random.randint(0,12)
+    carta_cpu_1 = cartas[cpu1]
+    carta_cpu_2 = cartas[cpu2]
+    if carta_cpu_1 == 'J' or  carta_cpu_1=='K' or carta_cpu_1=='Q':
+        carta_cpu_1 = 10
+    if carta_cpu_2 == 'J' or  carta_cpu_2=='K' or carta_cpu_2=='Q':
+        carta_cpu_2 = 10
+    if carta_cpu_1 == 'A':
+        contador_cpu += 11
+        if contador_cpu > 21:
+            carta_cpu_1 = 1
+    if carta_cpu_2 == 'A':
+        contador_cpu += 11
+        if contador_cpu > 21:
+            carta_cpu_2 = 1
+                
+    contador_cpu = carta_cpu_1 + carta_cpu_2
+        
+    while contador_cpu <= 17:
+        cpu_x = random.randint(0,12)
+        carta_cpu_x = cartas[cpu_x]
+        if carta_cpu_x == 'J' or  carta_cpu_x=='K' or carta_cpu_x=='Q':
+            carta_cpu_x = 10
+        if carta_cpu_x == 'J' or  carta_cpu_x=='K' or carta_cpu_x=='Q':
+            carta_cpu_x = 10
+        if carta_cpu_x == 'A':
+            contador_cpu += 11
+            if contador_cpu > 21:
+                carta_cpu_x = 1
+        if carta_cpu_x == 'A':
+            contador_cpu += 11
+        contador_cpu += carta_cpu_x
+    print('O seu oponente obteve {0}'.format(contador_cpu))
+    
+    if contador_cpu > 21 and contador > 21:
+        print('Empate! Ninguem ganhou nem perdeu')
+        ganho = aposta
+        print('você manteve [0]!'.format(ganho))
+    if contador_cpu == contador:
+        print('Empate! Ninguem ganhou nem perdeu')
+        ganho = aposta
+        print('você manteve [0]!'.format(ganho))
+    elif contador_cpu > 21 and contador < 21:
+        print('Voce venceu')
+        ganho = aposta + aposta*1.5
+        print('Seu premio foi de {0}'.format(ganho))
+    elif contador_cpu < 21:
+        if contador_cpu > contador:
+            print('Voce perdeu para seu adversario...')
+        elif contador_cpu > contador:
+                print('Voce venceu o seu adversario...')
+        
+
+#if vitoria != 'blackjack':
+#    print ('Blackjack!')
+#    aposta = aposta + 1.5*aposta
+#    print('Seu premio foi de {0}'.format(aposta))  
+
+#if contador > 21:      
+    #print('Você perdeu :(')
+
+#if contador != 21:
+#    cpu1 = random.randint(0,12)
+#    cpu2 = random.randint(0,12)
+#    carta_cpu_1 = cartas[cpu1]
+#    carta_cpu_2 = cartas[cpu2] 
+#    print('As cartas do oponente são {0} e {1}'.format(carta_cpu_1,carta_cpu_2))
+    
+    
+    
